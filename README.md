@@ -41,6 +41,8 @@ Explicação:
 
 ###  Acessando a página no navegador 🌐
 Agora, basta acessar a página no navegador com o endereço: http://localhost:8080.
+![pag](images/pag.png)
+
 
 ###   Personalizando a página
 A página foi personalizada com Tailwind CSS e agora exibe informações sobre o Programa de Bolsas 2025 e a Atividade de Docker.
@@ -51,7 +53,7 @@ Com isso, conseguimos criar um container Docker rodando o Nginx e servindo uma p
 ###  Conclusão 📝
 Esta atividade demonstrou como utilizar o Docker para rodar um servidor Nginx em um container e servir uma página estática. O uso de Tailwind CSS ajudou a personalizar rapidamente a aparência da página.
 
-## Criando e rodando um container interativo
+## 2. Criando e rodando um container interativo
 Inicialmente, foi criado um contêiner Ubuntu, que permite interagir diretamente com o terminal do sistema:
 ```bash
 docker run -it ubuntu
