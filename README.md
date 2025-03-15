@@ -104,7 +104,7 @@ docker rm $(docker ps -aq)
 Isso apagará todos os containers parados.
 
 ## 4. Passo a Passo: Criando e Rodando um Container Docker para Aplicação Flask 📌 
-Este guia explica como criar e rodar um container Docker para uma aplicação Flask, de forma simples e objetiva.
+Este guia explica como criar e rodar um container Docker para uma aplicação Flask, de forma simples e objetiva. Flask é um framework leve para criar aplicações web com Python. Ele permite desenvolver APIs e sites de forma simples e rápida, sendo muito utilizado para projetos pequenos e médios. 
 
  ### Pré-requisitos 🛠️
  - Ter o Docker instalado em sua máquina.
