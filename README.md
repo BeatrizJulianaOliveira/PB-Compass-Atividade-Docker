@@ -135,7 +135,7 @@ if __name__ == '__main__':
 🔹 Importante: O host='0.0.0.0' permite que o container seja acessado externamente.
 
  
-### Criar o Arquivo requirements.txt 📌
+### Criar o Arquivo **requirements.txt** 📌
 
 Este arquivo lista as dependências do projeto. Adicione:
 ```bash
