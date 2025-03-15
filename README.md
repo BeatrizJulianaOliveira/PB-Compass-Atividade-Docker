@@ -72,3 +72,117 @@ docker run -it ubuntu
   ### Conclusão
   Esta atividade demonstra de maneira prática como utilizar Docker para criar contêineres e gerenciar pacotes dentro de um sistema Ubuntu. A utilização do **htop** também exemplifica como podemos interagir com o sistema e visualizar informações em tempo real de forma eficiente.
 
+## 3. Listando e Removendo Containers no Docker
+Essa atividade tem como objetivo ensinar a gerenciar containers no Docker, permitindo listar os containers em execução ou parados, além de demonstrar como parar e remover containers específicos. Esse processo é essencial para manter um ambiente Docker organizado, eliminando containers desnecessários e liberando recursos do sistema.
+### Listar Containers
+Para visualizar os containers em execução, use:
+```bash
+docker ps
+```
+Caso queira listar todos os containers (incluindo os que estão parados), utilize:
+```bash
+docker ps -a
+```
+### Parar um Container
+Se houver um container em execução e for necessário pará-lo, use:
+```bash
+docker stop <CONTAINER_ID>
+```
+🔹 Substitua <CONTAINER_ID> pelo ID do container que deseja parar. Você pode obter esse ID usando o comando docker ps.
+
+### Remover um Container
+Para excluir um container específico, primeiro pare-o (se ainda estiver rodando) e depois remova-o com:
+```bash
+docker rm <CONTAINER_ID>
+```
+Se o container já estiver parado, basta rodar o comando acima.
+
+🔹 Dica: Para remover vários containers de uma vez, liste os IDs e os remova:
+```bash
+docker rm $(docker ps -aq)
+```
+Isso apagará todos os containers parados.
+
+## 4. Passo a Passo: Criando e Rodando um Container Docker para Aplicação Flask 📌 
+Este guia explica como criar e rodar um container Docker para uma aplicação Flask, de forma simples e objetiva.
+
+ ### Pré-requisitos 🛠️
+ - Ter o Docker instalado em sua máquina.
+ - Criar um diretório para sua aplicação.
+
+### Estrutura do Projeto 📂
+Antes de começar, sua pasta do projeto deve conter os seguintes arquivos:
+```bash
+minha-aplicacao/
+│-- app.py
+│-- requirements.txt
+│-- Dockerfile
+```
+ ### Criar a Aplicação Flask 📌
+Crie um arquivo app.py e adicione o seguinte código:
+```bash
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Olá, mundo! Aplicação Flask rodando no Docker!"
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+```
+🔹 Importante: O host='0.0.0.0' permite que o container seja acessado externamente.
+
+ 
+### Criar o Arquivo requirements.txt 📌
+
+Este arquivo lista as dependências do projeto. Adicione:
+```bash
+flask
+```
+Se houver mais bibliotecas, adicione uma por linha.
+
+### Criar o Arquivo Dockerfile 📌
+
+O Dockerfile define como a imagem Docker será construída. Adicione o seguinte conteúdo:
+```bash
+# Usando uma imagem oficial do Python
+FROM python:3.9-slim
+
+# Definindo o diretório de trabalho dentro do container
+WORKDIR /app
+
+# Copiando os arquivos para o container
+COPY requirements.txt ./
+COPY app.py ./
+
+# Instalando as dependências
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expondo a porta 5000
+EXPOSE 5000
+
+# Comando para iniciar a aplicação
+CMD ["python", "app.py"]
+```
+###  Construir a Imagem Docker 📌
+
+Agora, no terminal (dentro da pasta do projeto), execute o comando:
+```bash
+docker build -t minha-aplicacao .
+```
+🔹 O -t minha-aplicacao dá um nome para a imagem.
+
+### Rodar o Container
+Agora que a imagem está pronta, rode o container:
+```bash
+docker run -p 5000:5000 minha-aplicacao
+```
+🔹 O -p 5000:5000 mapeia a porta do container para a máquina local.
+
+### Acessar a Aplicação
+Abra o navegador e acesse:
+```bash
+http://localhost:5000
+```
